@@ -5,9 +5,9 @@ from datetime import timedelta
 import logging
 
 from aiohttp.client_exceptions import ClientError
-from pyeconet import EcoNetApiInterface
-from pyeconet.equipment import Equipment, EquipmentType
-from pyeconet.errors import (
+from .pyeconet import EcoNetApiInterface
+from .pyeconet.equipment import Equipment, EquipmentType
+from .pyeconet.errors import (
     GenericHTTPError,
     InvalidCredentialsError,
     InvalidResponseFormat,

@@ -1,0 +1,7 @@
+*.DS_Store
+pyeconet/__pycache__/*
+.vscode
+README.html
+package-lock.json
+*__pycache__**
+*.pyc

@@ -1,5 +1,5 @@
 """Constants for Econet integration."""
 
-DOMAIN = "econet"
+DOMAIN = "doneconet"
 
-PUSH_UPDATE = "econet.push_update"
+PUSH_UPDATE = "don.econet.push_update"

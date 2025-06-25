@@ -2,8 +2,8 @@
 
 from typing import Any
 
-from pyeconet.equipment import EquipmentType
-from pyeconet.equipment.thermostat import (
+from .pyeconet.equipment import EquipmentType
+from .pyeconet.equipment.thermostat import (
     Thermostat,
     ThermostatFanMode,
     ThermostatOperationMode,
