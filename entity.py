@@ -1,6 +1,6 @@
 """Support for EcoNet products."""
 
-from .pyeconet.equipment import Equipment
+from pyeconetmodified.equipment import Equipment
 
 from homeassistant.core import callback
 from homeassistant.helpers.device_registry import DeviceInfo

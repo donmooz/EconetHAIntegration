@@ -5,8 +5,8 @@ import logging
 import enum
 from typing import List, Union, Optional, Dict
 
-from pyeconet.errors import InvalidResponseFormat
-from pyeconet.equipment import Equipment
+from pyeconetmodified.errors import InvalidResponseFormat
+from pyeconetmodified.equipment import Equipment
 
 _LOGGER = logging.getLogger(__name__)
 

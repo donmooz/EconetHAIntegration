@@ -5,8 +5,8 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-from pyeconet.equipment import EquipmentType
-from pyeconet.equipment.thermostat import Thermostat, ThermostatOperationMode
+from pyeconetmodified.equipment import EquipmentType
+from pyeconetmodified.equipment.thermostat import Thermostat, ThermostatOperationMode
 
 from homeassistant.components.switch import SwitchEntity
 from homeassistant.core import HomeAssistant

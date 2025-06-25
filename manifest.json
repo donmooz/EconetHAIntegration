@@ -1,10 +1,11 @@
 {
   "domain": "doneconet",
   "name": "Don's Rheem EcoNet Products",
-  "codeowners": ["@w1ll1am23"],
+  "codeowners": ["@donmooz"],
   "config_flow": true,
   "documentation": "https://github.com/donmooz/EconetHAIntegration",
   "iot_class": "cloud_push",
   "loggers": ["paho_mqtt"],
-  "requirements": ["pyeconet==0.1.28"]
+  "requirements": [],
+  "version": "v0.0.0"
 }

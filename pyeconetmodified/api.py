@@ -5,15 +5,15 @@ import json
 from typing import Type, TypeVar, List, Dict, Optional
 import logging
 
-from pyeconet.errors import (
+from pyeconetmodified.errors import (
     PyeconetError,
     InvalidCredentialsError,
     GenericHTTPError,
     InvalidResponseFormat,
 )
-from pyeconet.equipment import Equipment, EquipmentType
-from pyeconet.equipment.water_heater import WaterHeater
-from pyeconet.equipment.thermostat import Thermostat
+from pyeconetmodified.equipment import Equipment, EquipmentType
+from pyeconetmodified.equipment.water_heater import WaterHeater
+from pyeconetmodified.equipment.thermostat import Thermostat
 
 from aiohttp import ClientSession, ClientTimeout
 from aiohttp.client_exceptions import ClientError
@@ -186,8 +186,11 @@ class EcoNetApiInterface:
                     _equip_obj = Thermostat(_equip, self)
                     self._equipment[_equip_obj.serial_number] = _equip_obj
                     for zoning_device in _equip.get("zoning_devices", []):
-                        #Zoning device is missing @RUNNINGSTATUS. Will need that later as updates come in.
-                        zoning_device["@RUNNINGSTATUS"] = "Zoning Device Awaiting Update"
+                        # Zoning_devices is missing @RUNNINGSTATUS.
+                        # Without that, the _equip_obj won't have a place to store update for zone thermostats and they will always show as "unknown".
+                        # Kludge: Add an empty attribute with the hope that updates will come in eventually to set actaul zone thermostate state.
+                        # Things will be out of sync potentially on startup, but should be good after first update.
+                        zoning_device["@RUNNINGSTATUS"] = ""
                         _equip_obj = Thermostat(zoning_device, self)
                         self._equipment[_equip_obj.serial_number] = _equip_obj
 
@@ -227,9 +230,9 @@ class EcoNetApiInterface:
             ) as resp:
                 if resp.status == 200:
                     _json = await resp.json()
-                    with open("c:\dump\econetUserData.json", "w") as text_file:
-                        json.dump(_json, text_file, indent=2)
-                    #_LOGGER.debug(json.dumps(_json, indent=2))
+                    #with open("c:\dump\econetUserData.json", "w") as text_file:
+                    #    json.dump(_json, text_file, indent=2)
+                    _LOGGER.debug(json.dumps(_json, indent=2))
                     if _json.get("success"):
                         self._locations = _json["results"]["locations"]
                         return self._locations

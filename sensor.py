@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from pyeconet.equipment import Equipment, EquipmentType
+from pyeconetmodified.equipment import Equipment, EquipmentType
 
 from homeassistant.components.sensor import (
     SensorDeviceClass,
@@ -16,7 +16,9 @@ from homeassistant.const import (
     EntityCategory,
     UnitOfEnergy,
     UnitOfVolume,
+    UnitOfTemperature
 )
+
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
@@ -76,7 +78,41 @@ SENSOR_TYPES: tuple[SensorEntityDescription, ...] = (
     SensorEntityDescription(
         key="running_state",
         name="running_state",
+        state_class=SensorStateClass.MEASUREMENT,
     ),
+    SensorEntityDescription(
+        key="running",
+        name="running",
+        state_class=SensorStateClass.MEASUREMENT,
+    ),
+    SensorEntityDescription(
+        key="set_point",
+        name="temperature",
+        device_class=SensorDeviceClass.TEMPERATURE,
+        native_unit_of_measurement=UnitOfTemperature.FAHRENHEIT,
+        state_class=SensorStateClass.MEASUREMENT,
+    ),
+    SensorEntityDescription(
+        key="humidity",
+        name="humidity",
+        device_class=SensorDeviceClass.HUMIDITY,
+        state_class=SensorStateClass.MEASUREMENT,
+        native_unit_of_measurement=PERCENTAGE,
+    ),
+    SensorEntityDescription(
+        key="heat_set_point",
+        name="heat_set_point",
+        device_class=SensorDeviceClass.TEMPERATURE,
+        native_unit_of_measurement=UnitOfTemperature.FAHRENHEIT,
+        state_class=SensorStateClass.MEASUREMENT,
+    ),
+    SensorEntityDescription(
+        key="cool_set_point",
+        name="cool_set_point",
+        device_class=SensorDeviceClass.TEMPERATURE,
+        native_unit_of_measurement=UnitOfTemperature.FAHRENHEIT,
+        state_class=SensorStateClass.MEASUREMENT,
+    )
 )
 
 
