@@ -1,16 +1,28 @@
 """Config flow to configure the EcoNet component."""
 
 from typing import Any
+import logging
 
-from .pyeconetmodified import EcoNetApiInterface
-from .pyeconetmodified.errors import InvalidCredentialsError, PyeconetError
+# kludge to allow load of module from current directory when run as a script.
+import sys
+import os 
+dir_path = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(dir_path)
+
+_LOGGER = logging.getLogger(__name__)
+_LOGGER.error("my name is " + __name__)
+_LOGGER.error("My dir_path path is " + dir_path)
+_LOGGER.error("Current sys.path after adding dir_path is " + " ".join(sys.path))
+
 import voluptuous as vol
+
+from pyeconetmodified import EcoNetApiInterface
+from pyeconetmodified.errors import InvalidCredentialsError, PyeconetError
 
 from homeassistant.config_entries import ConfigFlow, ConfigFlowResult
 from homeassistant.const import CONF_EMAIL, CONF_PASSWORD
 
 from .const import DOMAIN
-
 
 class EcoNetFlowHandler(ConfigFlow, domain=DOMAIN):
     """Handle an EcoNet config flow."""
@@ -30,6 +42,7 @@ class EcoNetFlowHandler(ConfigFlow, domain=DOMAIN):
         self, user_input: dict[str, Any] | None = None
     ) -> ConfigFlowResult:
         """Handle the start of the config flow."""
+
         if not user_input:
             return self.async_show_form(
                 step_id="user",
@@ -63,3 +76,4 @@ class EcoNetFlowHandler(ConfigFlow, domain=DOMAIN):
                 CONF_PASSWORD: user_input[CONF_PASSWORD],
             },
         )
+

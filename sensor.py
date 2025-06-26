@@ -78,12 +78,10 @@ SENSOR_TYPES: tuple[SensorEntityDescription, ...] = (
     SensorEntityDescription(
         key="running_state",
         name="running_state",
-        state_class=SensorStateClass.MEASUREMENT,
     ),
     SensorEntityDescription(
         key="running",
         name="running",
-        state_class=SensorStateClass.MEASUREMENT,
     ),
     SensorEntityDescription(
         key="set_point",

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from .pyeconetmodified.equipment import Equipment, EquipmentType
+from pyeconetmodified.equipment import Equipment, EquipmentType
 
 from homeassistant.components.binary_sensor import (
     BinarySensorDeviceClass,

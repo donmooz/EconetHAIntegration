@@ -4,6 +4,18 @@ import asyncio
 from datetime import timedelta
 import logging
 
+# kludge to allow load of module from current directory when run as a script.
+import sys
+import os 
+dir_path = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(dir_path)
+
+_LOGGER = logging.getLogger(__name__)
+
+_LOGGER.error("my name is" + __name__)
+_LOGGER.error("My dir_path path is " + dir_path)
+_LOGGER.error("Current sys.path after adding dir_path is " + " ".join(sys.path))
+
 from aiohttp.client_exceptions import ClientError
 from pyeconetmodified import EcoNetApiInterface
 from pyeconetmodified.equipment import Equipment, EquipmentType
@@ -23,7 +35,6 @@ from homeassistant.helpers.event import async_track_time_interval
 
 from .const import PUSH_UPDATE
 
-_LOGGER = logging.getLogger(__name__)
 
 PLATFORMS = [
     Platform.BINARY_SENSOR,
