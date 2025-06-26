@@ -9,10 +9,10 @@ import os
 dir_path = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(dir_path)
 
-_LOGGER = logging.getLogger(__name__)
+""" _LOGGER = logging.getLogger(__name__)
 _LOGGER.error("my name is " + __name__)
 _LOGGER.error("My dir_path path is " + dir_path)
-_LOGGER.error("Current sys.path after adding dir_path is " + " ".join(sys.path))
+_LOGGER.error("Current sys.path after adding dir_path is " + " ".join(sys.path)) """
 
 import voluptuous as vol
 
