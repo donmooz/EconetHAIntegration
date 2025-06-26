@@ -7,5 +7,5 @@
   "iot_class": "cloud_push",
   "loggers": ["custom_components.doneconet","paho_mqtt"],
   "requirements": [],
-  "version": "v0.0.0"
+  "version": "v0.0.1"
 }
